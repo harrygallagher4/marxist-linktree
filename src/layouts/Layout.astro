@@ -1,4 +1,7 @@
 ---
+import "./webflow.css";
+import "./normalize.css"; //stolen from webflow, idk what it does. Probably important...
+import "./marxist-linktree.webflow.css";
 export interface Props {
 	title: string;
 }
@@ -10,27 +13,107 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content="Political radicalisation website" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="navbar">
+			<nav role="navigation" class="nav-menu">
+				<a href="index.html" class="nav-text nav-current">Home</a>
+				<a href="#" class="nav-text">Content</a>
+				<a href="#" class="nav-text">Library</a>
+				<a href="#" class="nav-text">Encyclopedia</a>
+				<a href="#" class="nav-text">About</a>
+				<a href="#" class="nav-text">Donate</a>
+				<a href="#" class="nav-text">Contact</a>
+			</nav>
+		</div>
+		<div class="body-gradient">
+			<slot />
+		</div>
 	</body>
 </html>
 <style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
 	html {
 		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+		/*background-color: #F6F6F6;*/
 	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+	body {
+		padding: 0;
+		color: #333;
+	}
+	img {
+		max-width: 100%;
+		vertical-align: middle;
+		display: inline-block;
+	}
+	.body-gradient {
+		background-image: linear-gradient(#2f001c, #121212);
+	}
+	.nav-link {
+		text-decoration: none;
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+		text-decoration: none;
+		color: #222222;
+		padding: 20px;
+		text-align: left;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.nav-text {
+		color: #fff;
+		justify-content: center;
+		align-items: flex-end;
+		padding: 15px 20px;
+		font-family: proxima-nova, sans-serif;
+		font-size: 1rem;
+		font-weight: 700;
+		display: block;
+	}
+	.nav-text:hover {
+		color: #ffadc6;
+	}
+	.nav-current {
+		color: #0082f3;
+	}
+	.navbar {
+		position: fixed; /*maybe aboslute?*/
+		margin-left: auto;
+		margin-right: auto;
+		width: 100vw;
+		background-image: linear-gradient(
+			#a10043cc,
+			#a10043aa,
+			#a1004377,
+			#0000
+		);
+	}
+	.nav-menu {
+		display: flex;
+		justify-content: center;
+	}
+
+	.heading {
+		color: #fff;
+		justify-content: center;
+		margin-top: 0.2em;
+		margin-bottom: 0;
+		font-family: proxima-nova, sans-serif;
+		font-size: 3rem;
+		line-height: 1;
+		display: flex;
+	}
+	.subheading {
+		color: #ff004d;
+		justify-content: center;
+		font-family: proxima-nova, sans-serif;
+		font-size: 1.5rem;
+		line-height: 1;
+		display: flex;
 	}
 </style>

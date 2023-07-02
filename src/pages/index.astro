@@ -1,81 +1,194 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Marxist Linktree">
+	<img src="images/linktree-hero.png" />
+	<div class="hero-heading">
+		<div class="subheading">welcome to the</div>
+		<h1 class="heading">Marxist Linktree</h1>
+	</div>
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+		<div class="overview-section">
+			<a href="podcasts" class="content-link w-inline-block">
+				<div class="content-circle">
+					<img src="images/microphone.png" class="content-icon" />
+					<div class="content-title">Podcasts</div>
+				</div>
+			</a>
+			<a href="#" class="content-link w-inline-block">
+				<div class="content-circle">
+					<img
+						src="images/encyclopedia3.png"
+						sizes="(max-width: 479px) 13vw, 60px"
+						srcset="images/encyclopedia3-p-500.png 500w, images/encyclopedia3.png 512w"
+						class="content-icon"
+					/>
+					<div class="content-title">Encyclopedia</div>
+				</div>
+			</a>
+			<a href="#" class="content-link w-inline-block">
+				<div class="content-circle">
+					<img
+						src="images/man.png"
+						sizes="(max-width: 479px) 13vw, 60px"
+						srcset="images/man-p-500.png 500w, images/man.png 512w"
+						class="content-icon"
+					/>
+					<div class="content-title">Public figures</div>
+				</div>
+			</a>
+			<a href="#" class="content-link w-inline-block">
+				<div class="content-circle">
+					<img src="images/web-2.png" class="content-icon" />
+					<div class="content-title">Websites</div>
+				</div>
+			</a>
+			<a href="#" class="content-link w-inline-block">
+				<div class="content-circle">
+					<img src="images/open-book.png" class="content-icon" />
+					<div class="content-title">Library</div>
+				</div>
+			</a>
+			<a href="content-creators" class="content-link w-inline-block">
+				<div class="content-circle">
+					<img src="images/youtube.png" class="content-icon" />
+					<div class="content-title">Creators</div>
+				</div>
+			</a>
+			<form action="/search" class="search w-form">
+				<div class="search-heading">
+					Search for a topic of interest
+				</div><input
+					type="search"
+					class="search-input w-input"
+					maxlength="256"
+					name="query"
+					placeholder="e.g. October Revolution"
+					id="search"
+					required=""
+				/><input type="submit" value="Search" class="button w-button" />
+			</form>
+		</div>
+		<div class="info-section">
+			<h2 class="info-heading">
+				The Marxist Linktree is an open-source encyclopedia of Marxist
+				content and literature.
+			</h2>
+			<a href="#" class="info-link w-inline-block">
+				<div class="info-base">
+					<img src="images/heart.png" class="info-icon" />
+					<div class="info-title">Donate</div>
+				</div>
+			</a>
+			<a href="#" class="info-link w-inline-block">
+				<div class="info-base">
+					<img src="images/question-mark.png" class="info-icon" />
+					<div class="info-title">About</div>
+				</div>
+			</a>
+			<a href="#" class="info-link w-inline-block">
+				<div class="info-base">
+					<img
+						src="images/notification.png"
+						sizes="(max-width: 479px) 23vw, (max-width: 767px) 60px, (max-width: 991px) 8vw, 70px"
+						srcset="images/notification-p-500.png 500w, images/notification.png 512w"
+						class="info-icon"
+					/>
+					<div class="info-title">Contact</div>
+				</div>
+			</a>
+			<div class="disclaimer">
+				<div class="disclaimer-card">
+					<img src="images/Caution.png" class="image" />
+					<div class="disclaimer-heading-1">
+						Consuming content<br />is not radical political activism
+					</div>
+					<div class="disclaimer-text-1">
+						It is also not a substitute for<br />organizing,
+						demonstrating, unionizing,<br />agitating & educating.
+					</div>
+					<div class="disclaimer-text-2">
+						Don't forget to touch grass.
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
 </Layout>
 
 <style>
 	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 0;
+		width: 100vw;
 	}
 	h1 {
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
 	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
+	.hero-section {
+		height: 100vh;
+		background-image: url("../images/linktree-hero.png");
+		background-position: 50%;
+		background-size: cover;
+		flex-direction: column;
+		justify-content: space-between;
+		margin-top: 0;
+		padding-bottom: 0;
+		display: flex;
 	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
+	.hero-heading {
+		margin-bottom: 4vw;
+		display: block;
 	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
+	.overview-section {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
+		place-content: center;
+		grid-template-columns: repeat(3, 250px);
+		padding: 2em 20vw 4em 20vw;
+	}
+	.overview-section > * {
+		justify-self: center;
+	}
+	.search {
+		grid-column: 1 / span 3;
+	}
+	.info-section {
+		display: grid;
+		background-color: rgba(0, 0, 0, 0);
+		grid-template-columns: repeat(3, 250px);
+		place-content: center;
+		padding-top: 5em;
+		padding-bottom: 10em;
+	}
+	.info-section > * {
+		justify-self: center;
+	}
+	.info-heading {
+		width: 40ch;
+		color: #fff;
+		text-align: center;
+		justify-content: center;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-bottom: 0;
+		font-family: proxima-nova, sans-serif;
+		font-size: 1.8rem;
+		line-height: 1.5em;
+		display: flex;
+		grid-column: 1 / span 3;
+	}
+	.disclaimer {
+		grid-column: 1 / span 3;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 5em;
+		padding-bottom: 0;
+		display: flex;
 	}
 </style>
