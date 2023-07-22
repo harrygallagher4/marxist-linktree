@@ -4,12 +4,8 @@ dist/
 # generated types
 .astro/
 
-# edgedb generated interfaces
-dbschema/interfaces.ts
-# edgedb generated queries
-queries/*.query.ts
-# edgedb generated query builder
-dbschema/edgeql-js
+# edgedb generated stuff
+src/schema/generated/
 
 # dependencies
 node_modules/
