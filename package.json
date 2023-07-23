@@ -3,6 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "gen:types": "generate interfaces --file ./src/schema/generated/types.ts",
+    "gen:queries": "generate interfaces --file ./src/schema/generated/queries",
+    "gen:edgeql": "generate edgeql-js --out ./src/schema/generated/edgeql-js",
+    "gen": "$npm_execpath run-script '/^gen:.*/'",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
