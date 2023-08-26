@@ -2,6 +2,14 @@ module default {
 
   scalar type ContributionType extending enum<Generic, Author, Editor, Translator>;
 
+  type File {
+    required oid: uuid { default := std::uuid_generate_v4(); }
+    name: str;
+    ext: str;
+    mime: str;
+    property path := <str>.oid if .ext ?= <str>{} else <str>.oid ++ '.' ++ .ext;
+  }
+
   abstract type Creator {
     required name: str;
     description: str;
@@ -74,6 +82,9 @@ module default {
   }
 
   # Initially I thought it was a good idea to *not* make this an extension of
+  # `Work` so a bunch of different editions don't show up on a creator's page.
+  # Now I'm reconsidering that because I've mostly used custom queries on
+  # `Creator.works` to list works by their type.
   type Edition {
     title: str;
     subtitle: str;
