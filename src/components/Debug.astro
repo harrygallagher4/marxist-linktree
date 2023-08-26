@@ -1,0 +1,15 @@
+---
+const { value } = Astro.props;
+---
+<aside class="debug">
+  <pre>{
+    JSON.stringify(value, null, 2)
+  }</pre>
+</aside>
+<style>
+  aside.debug {
+    font-size: 8pt;
+    margin-top: 200px;
+    background-color: lightgrey;
+  }
+</style>
