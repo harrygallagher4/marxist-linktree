@@ -1,0 +1,7 @@
+---
+const predicate = Object.entries(Astro.props).every(([_, v]) => (Array.isArray(v) === true) && (v.length > 0));
+---
+{Astro.slots.has('else') ?
+  ((predicate !== false) ? <><slot /></> : <><slot name="else" /></>)
+  : (predicate !== false) && <><slot /></>}
+
