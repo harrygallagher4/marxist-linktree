@@ -1,0 +1,21 @@
+---
+import Layout from '@layouts/Plain.astro';
+import * as edgedb from 'edgedb';
+import { LiterateWork as ILiterateWork } from '@schema/types';
+import Debug from '@components/Debug.astro';
+
+const client = edgedb.createClient();
+const result = await client.query<ILiterateWork>(`select LiterateWork { *, contributors: { * } }`);
+---
+
+<Layout title='Marxist Linktree'>
+  <main>
+    {result.map(w =>
+      <div>
+        <a href={`/lit/${w.id}`}>{w.title}</a>
+      </div>
+    )}
+  </main>
+  <Debug value={result} />
+</Layout>
+
