@@ -1,0 +1,30 @@
+---
+import { LiterateWork } from '@schema/types';
+import NonEmptyArray from '@components/predicates/NonEmptyArray.astro';
+import Cond from '@components/predicates/StrictNonFalse.astro';
+import { isAuthor, contributionType, sortContributions } from '@data/contribution';
+
+export interface Props {
+  work: LiterateWork;
+}
+const { work } = Astro.props;
+
+const contributions = sortContributions(work.contributors);
+---
+
+<div>
+  <NonEmptyArray subject={contributions}>{
+      contributions.map((c) =>
+        <Cond subject={isAuthor(c)}>
+          <Fragment>
+            <span itemprop='author'>{c.name}</span>
+          </Fragment>
+          <Fragment slot='else'>
+            <span>{c.name}</span>
+            <span>({contributionType(c)})</span>
+          </Fragment>
+        </Cond>
+      )
+  }</NonEmptyArray>
+</div>
+

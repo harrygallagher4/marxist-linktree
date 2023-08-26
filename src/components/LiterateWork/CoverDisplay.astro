@@ -1,0 +1,21 @@
+---
+import { LiterateWork } from '@schema/types';
+
+export interface Props {
+  work: LiterateWork;
+}
+const { work } = Astro.props;
+---
+
+<img
+  itemprop='image'
+  src='/covers/karl-marx-capital.jpg'
+  alt={`Cover of ${work.title}`}
+/>
+
+<style>
+  img {
+    max-height: 100px;
+  }
+</style>
+

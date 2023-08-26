@@ -1,0 +1,37 @@
+---
+import { LiterateWork } from '@schema/types';
+
+export interface Props {
+  work: LiterateWork;
+}
+const { work } = Astro.props;
+
+const titleMode = work.display_title ? 'display' : work.subtitle ? 'both' : 'default';
+---
+
+{titleMode == 'default' ? (
+  <h1 itemprop='name'>{work.title}</h1>
+) : titleMode == 'display' ? (
+  <h1 itemprop='name'>{work.display_title}</h1>
+) : (
+  <hgroup class='has-subtitle'>
+    <h1 itemprop='name'>{work.title}</h1>
+    <p>{work.subtitle}</p>
+  </hgroup>
+)}
+
+<style>
+  .has-subtitle {
+    display: block;
+  }
+  .has-subtitle > h1 {
+    display: inline-block;
+  }
+  .has-subtitle > p {
+    display: inline-block;
+  }
+  .has-subtitle > h1::after {
+    content: ":";
+  }
+</style>
+
