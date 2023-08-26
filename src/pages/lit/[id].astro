@@ -1,0 +1,26 @@
+---
+import * as edgedb from 'edgedb';
+import { LiterateWork as ILiterateWork } from '@schema/types';
+import Debug from '@components/Debug.astro';
+import LiterateWork from '@components/LiterateWork/index.astro';
+
+export { literateWorkPaths as getStaticPaths } from '@data/static';
+
+
+const { id } = Astro.params;
+const client = edgedb.createClient();
+const work = await client.querySingle<ILiterateWork>(`
+  select LiterateWork {
+    *,
+    contributors: {*},
+    tags: {*},
+    editions: {*}
+  }
+  filter .id = <uuid>$id;`,
+  { id }
+);
+---
+
+<LiterateWork work={work} />
+<Debug value={work} />
+

@@ -1,0 +1,94 @@
+---
+import * as edgedb from 'edgedb';
+import type { Creator, LiterateWork, PodcastWork, VideoWork } from '@schema/types';
+import Debug from '@components/Debug.astro';
+import NonEmptyArray from '@components/predicates/NonEmptyArray.astro';
+import NonNullish from '@components/predicates/NonNullish.astro';
+import Cond from '@components/predicates/StrictNonFalse.astro'
+import { titleString } from '@data/literateWork';
+import { contributionsString } from '@data/contribution';
+import * as link from '@data/link';
+
+export { creatorPaths as getStaticPaths } from '@data/static';
+
+
+const { id } = Astro.params;
+const client = edgedb.createClient();
+const { creator, data } = await client.querySingle<{
+  creator: Creator,
+  data: {
+    literature: LiterateWork[],
+    podcasts: PodcastWork[],
+    videos: VideoWork[]
+  }
+}>(`
+  select Creator {
+    creator := (select Creator { ** }),
+    data := (select Creator {
+      literature := .works[is LiterateWork] {**},
+      podcasts := .works[is PodcastWork] {**},
+      videos := .works[is VideoWork] {**}
+    })
+  }
+  filter .id = <uuid>$id;
+`, { id });
+---
+
+<Fragment>
+  <h1>{ creator.name }</h1>
+  <NonNullish value={creator.description}>
+    <p>{ creator.description }</p>
+  </NonNullish>
+
+  <NonEmptyArray value={creator.links}>
+    <div>
+      <h2>Links</h2>
+      {creator.links.map((l) =>
+        <div>
+          <Cond value={link.isKnown(l)}>
+            <>
+              <span>{link.getTypeName(l)}:</span>
+              <span><a href={link.url(l)}>{l.url}</a></span>
+            </>
+            <Fragment slot='else'>
+              <span><a href={l.url}>{l.url}</a></span>
+            </Fragment>
+          </Cond>
+        </div>
+      )}
+    </div>
+  </NonEmptyArray>
+
+  <NonEmptyArray value={data.literature}>
+    <div>
+      <h2>Literature</h2>
+      {data.literature.map((w) =>
+        <>
+          <div>{ titleString(w) }</div>
+          <div>{ contributionsString(w.contributors) }</div>
+        </>
+      )}
+    </div>
+  </NonEmptyArray>
+
+  <NonEmptyArray value={data.podcasts}>
+    <div>
+      <h2>Podcasts</h2>
+      {data.podcasts.map((w) =>
+        <div>{w.title}</div>
+      )}
+    </div>
+  </NonEmptyArray>
+
+  <NonEmptyArray value={data.videos}>
+    <div>
+      <h2>Videos</h2>
+      {data.videos.map((w) =>
+        <div>{w.title}</div>
+      )}
+    </div>
+  </NonEmptyArray>
+
+  <Debug value={{ creator, data }} />
+</Fragment>
+

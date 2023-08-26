@@ -1,0 +1,31 @@
+---
+import * as edgedb from 'edgedb';
+import type { LiterateWork, PodcastWork, Tag, VideoWork } from '@schema/types';
+import Debug from '@components/Debug.astro';
+
+export { tagPaths as getStaticPaths } from '@data/static';
+
+const { id } = Astro.params;
+const client = edgedb.createClient();
+const { tag, data } = await client.querySingle<{
+  tag: Tag,
+  data: {
+    literature: LiterateWork[],
+    podcasts: PodcastWork[],
+    videos: VideoWork[]
+  }
+}>(`
+  select Tag {
+    tag := (select Tag { ** }),
+    data := (select Tag {
+      literature := .works[is LiterateWork] {**},
+      podcasts := .works[is PodcastWork] {**},
+      videos := .works[is VideoWork] {**}
+    })
+  }
+  filter .slug = <str>$id;
+`, { id });
+---
+
+<Debug value={{ tag, data }} />
+
