@@ -13,6 +13,7 @@ module default {
     link works := .<contributors[is Work];
     home_page: ExternalCreatorPage;
     multi links: ExternalCreatorPage;
+    multi tags: Tag;
   }
 
   abstract type Work {
@@ -29,7 +30,8 @@ module default {
 
   abstract type Tag {
     required name: str;
-    slug: str;
+    required slug: str { constraint exclusive; }
+    link works := .<tags[is Work];
   }
 
   abstract link contribution {
@@ -71,6 +73,7 @@ module default {
     link editions := .<parent[is Edition];
   }
 
+  # Initially I thought it was a good idea to *not* make this an extension of
   type Edition {
     title: str;
     subtitle: str;
