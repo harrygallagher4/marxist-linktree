@@ -1,0 +1,19 @@
+---
+import * as edgedb from 'edgedb';
+import { Edition as IEdition } from '@schema/types';
+import Debug from '@components/Debug.astro';
+
+export { editionPaths as getStaticPaths } from '@data/static';
+
+
+const { id } = Astro.params;
+const client = edgedb.createClient();
+const work = await client.querySingle<IEdition>(`
+  select Edition { ** }
+  filter .id = <uuid>$id;`,
+  { id }
+);
+---
+
+<Debug value={work} />
+

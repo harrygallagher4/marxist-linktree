@@ -1,0 +1,19 @@
+---
+import * as edgedb from 'edgedb';
+import { PodcastEpisodeWork as IPodcastEpisodeWork } from '@schema/types';
+import Debug from '@components/Debug.astro';
+
+export { podcastEpisodePaths as getStaticPaths } from '@data/static';
+
+
+const { id } = Astro.params;
+const client = edgedb.createClient();
+const work = await client.querySingle<IPodcastEpisodeWork>(`
+  select PodcastEpisodeWork { ** }
+  filter .id = <uuid>$id;`,
+  { id }
+);
+---
+
+<Debug value={work} />
+

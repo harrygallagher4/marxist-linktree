@@ -23,6 +23,9 @@ export function makeStaticPathsFromQuery<Key extends string>(query: string, keyN
 }
 
 export const literateWorkPaths = makeStaticPathsFromQuery(`select LiterateWork { id };`, 'id');
+export const editionPaths = makeStaticPathsFromQuery(`select Edition { id };`, 'id');
 export const creatorPaths = makeStaticPathsFromQuery(`select Creator { id };`, 'id');
 export const tagPaths = makeStaticPathsFromQuery(`select Tag { slug };`, 'slug', 'id');
+export const podcastPaths = makeStaticPathsFromQuery(`select PodcastWork { id };`, 'id');
+export const podcastEpisodePaths = makeStaticPathsFromQuery(`select PodcastEpisodeWork { id };`, 'id');
 
