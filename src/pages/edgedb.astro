@@ -1,7 +1,7 @@
 ---
 import Layout from '@layouts/Plain.astro';
 import * as edgedb from 'edgedb';
-import { LiterateWork as ILiterateWork } from '@schema/types';
+import type { LiterateWork as ILiterateWork } from '@schema/types';
 import Debug from '@components/Debug.astro';
 
 const client = edgedb.createClient();

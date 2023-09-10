@@ -1,4 +1,4 @@
-import { ExternalCreatorPage as Link } from "@schema/types";
+import type { ExternalCreatorPage as Link } from "@schema/types";
 
 // I refuse to change the name of twitter to "X"
 export const linkTypes = {

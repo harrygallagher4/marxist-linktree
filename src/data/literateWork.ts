@@ -1,4 +1,4 @@
-import { LiterateWork } from '@schema/types';
+import type { LiterateWork } from '@schema/types';
 
 
 export function titleString(work: LiterateWork) {

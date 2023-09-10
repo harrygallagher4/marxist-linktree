@@ -1,5 +1,5 @@
-import { ContributionType } from '@schema/generated/types';
-import { Contribution } from '@schema/types';
+import type { ContributionType } from '@schema/generated/types';
+import type { Contribution } from '@schema/types';
 
 
 const TYPE = '@contribution_type';
