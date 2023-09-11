@@ -13,9 +13,9 @@ const contributions = sortContributions(work.contributors);
 ---
 
 <div>
-  <NonEmptyArray subject={contributions}>{
+  <NonEmptyArray value={contributions}>{
       contributions.map((c) =>
-        <Cond subject={isAuthor(c)}>
+        <Cond value={isAuthor(c)}>
           <Fragment>
             <span itemprop='author'>{c.name}</span>
           </Fragment>

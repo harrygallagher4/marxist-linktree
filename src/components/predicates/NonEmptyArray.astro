@@ -1,7 +1,8 @@
 ---
-const predicate = Object.entries(Astro.props).every(([_, v]) => (Array.isArray(v) === true) && (v.length > 0));
+const predicate = (v: any) => (Array.isArray(v) === true) && (v.length > 0);
+const truthValue = predicate(Astro.props['value']);
 ---
 {Astro.slots.has('else') ?
-  ((predicate !== false) ? <><slot /></> : <><slot name="else" /></>)
-  : (predicate !== false) && <><slot /></>}
+  ((truthValue !== false) ? <><slot /></> : <><slot name="else" /></>)
+  : (truthValue !== false) && <><slot /></>}
 
