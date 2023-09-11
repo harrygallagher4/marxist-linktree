@@ -15,5 +15,10 @@ const work = await client.querySingle<IPodcastWork>(`
 );
 ---
 
+<div>
+  <h1>{work.title}</h1>
+  <p>{work.description}</p>
+</div>
+
 <Debug value={work} />
 

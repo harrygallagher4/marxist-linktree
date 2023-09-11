@@ -10,12 +10,7 @@ export { literateWorkPaths as getStaticPaths } from '@data/static';
 const { id } = Astro.params;
 const client = edgedb.createClient();
 const work = await client.querySingle<ILiterateWork>(`
-  select LiterateWork {
-    *,
-    contributors: {*},
-    tags: {*},
-    editions: {*}
-  }
+  select LiterateWork { ** }
   filter .id = <uuid>$id;`,
   { id }
 );
