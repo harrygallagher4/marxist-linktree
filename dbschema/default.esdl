@@ -16,7 +16,7 @@ module default {
     birth_date: cal::local_date;
     death_date: cal::local_date;
     location: str;
-    photo: str;
+    image: File;
 
     link works := .<contributors[is Work];
     home_page: ExternalCreatorPage;
@@ -90,7 +90,7 @@ module default {
     subtitle: str;
     display_title: str;
     description: str;
-    image: str;
+    image: File;
     language: str;
     year_published: int16;
     date_published: cal::local_date;
@@ -106,7 +106,7 @@ module default {
     url: str;
     filetype: str;
     file_extension: str;
-    thumbnail: str;
+    thumbnail: File;
 
     edition: Edition;
   }
