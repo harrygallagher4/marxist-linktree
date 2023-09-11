@@ -1,3 +1,9 @@
+/**
+ * This file deals with the `ExternalCreatorPage` and `ExternalIdentifier`
+ * types. I think we will probably end up merging the two in the future since
+ * they're basically the same.
+ **/
+
 import type { ExternalCreatorPage as Link } from "@schema/types";
 
 // I refuse to change the name of twitter to "X"
@@ -6,12 +12,24 @@ export const linkTypes = {
     prefix: 'https://www.youtube.com/c/',
     name: 'YouTube'
   },
+  'youtube:handle': {
+    prefix: 'https://www.youtube.com/@',
+    name: 'YouTube'
+  },
+  'spotify:show': {
+    prefix: 'https://open.spotify.com/show/',
+    name: 'Spotify'
+  },
   'instagram':{
     prefix: 'https://www.instagram.com/',
     name: 'Instagram'
   },
   'twitter': {
     prefix: 'https://twitter.com/',
+    name: 'Twitter'
+  },
+  'twitter:user': {
+    prefix: 'https://twitter.com/@',
     name: 'Twitter'
   },
   'patreon': {
