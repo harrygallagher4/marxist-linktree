@@ -1,5 +1,6 @@
 ---
 import type { LiterateWork } from '@schema/types';
+import Cond from '@components/predicates/StrictNonNull.astro';
 
 export interface Props {
   work: LiterateWork;
@@ -7,11 +8,16 @@ export interface Props {
 const { work } = Astro.props;
 ---
 
-<img
-  itemprop='image'
-  src='/covers/karl-marx-capital.jpg'
-  alt={`Cover of ${work.title}`}
-/>
+<div>
+  <Cond value={work.image}>
+    <Fragment>
+      <img src=`/objects/${work?.image?.path}` />
+    </Fragment>
+    <Fragment slot='else'>
+      <img src="/images/cover-missing.png" />
+    </Fragment>
+  </Cond>
+</div>
 
 <style>
   img {

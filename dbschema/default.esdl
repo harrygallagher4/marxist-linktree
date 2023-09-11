@@ -27,7 +27,7 @@ module default {
   abstract type Work {
     title: str;
     description: str;
-    image: str;
+    image: File;
     language: str;
     date_published: cal::local_date;
 
