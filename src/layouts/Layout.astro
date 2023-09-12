@@ -24,7 +24,7 @@ const { title } = Astro.props;
 			<nav role="navigation" class="nav-menu">
 				<a href="index.html" class="nav-text nav-current">Home</a>
 				<a href="#" class="nav-text">Content</a>
-				<a href="#" class="nav-text">Library</a>
+				<a href="library" class="nav-text">Library</a>
 				<a href="#" class="nav-text">Encyclopedia</a>
 				<a href="#" class="nav-text">About</a>
 				<a href="#" class="nav-text">Donate</a>
@@ -43,18 +43,28 @@ const { title } = Astro.props;
 	}
 	body {
 		padding: 0;
-		color: #333;
+		color: #dadada;
 	}
 	main {
 		margin-left: auto;
 		margin-right: auto;
+		margin-top: 200px;
 		padding: 0;
 		width: 100vw;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
 	}
 	img {
 		max-width: 100%;
 		vertical-align: middle;
 		display: inline-block;
+	}
+	.heading-image {
+		width: 100vw;
+		margin-bottom: -200px;
 	}
 	.body-gradient {
 		background-image: linear-gradient(#2f001c, #121212);
@@ -106,6 +116,7 @@ const { title } = Astro.props;
 	}
 
 	.heading {
+		font-weight: bold;
 		color: #fff;
 		justify-content: center;
 		margin-top: 0.2em;

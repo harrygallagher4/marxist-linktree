@@ -1,0 +1,42 @@
+---
+import { Dropdown } from "@components/Dropdown";
+import Layout from "../layouts/Layout.astro";
+let language = "pee pee poo poo"
+---
+
+<Layout title="Library">
+	<img class="heading-image" src="/images/bookshelf.png" />
+	<h1 class="heading">Marxist Library</h1>
+	<h3 class="subheading">{language}</h3>
+	<main>
+		<div class="dropdown-grid">
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me too" client:load/>
+			<Dropdown category="Consider me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			<Dropdown category="Clik me" client:load/>
+			
+			
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.dropdown-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		place-content: center;
+		padding: 2em 20vw 4em 20vw;
+		gap: 10px;
+	}
+	.dropdown-grid > *{
+		justify-self: center;
+	}
+
+</style>

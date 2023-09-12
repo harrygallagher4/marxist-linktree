@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Marxist Linktree">
-	<img src="images/linktree-hero.png" />
+	<img class="heading-image" src="images/linktree-hero.png" />
 	<div class="hero-heading">
 		<div class="subheading">welcome to the</div>
 		<h1 class="heading">Marxist Linktree</h1>
@@ -118,14 +118,9 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
 	.hero-section {
 		height: 100vh;
-		background-image: url("../images/linktree-hero.png");
+		background-image: url("/images/linktree-hero.png");
 		background-position: 50%;
 		background-size: cover;
 		flex-direction: column;
